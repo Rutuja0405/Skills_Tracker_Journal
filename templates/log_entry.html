@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Add Log Entry - SkillTracker{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <div class="form-container">
+        <div class="form-header">
+            <a href="{{ url_for('view_logs', goal_id=goal.id) }}" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Logs
+            </a>
+            <h1><i class="fas fa-pen"></i> Log Your Progress</h1>
+            <p class="goal-label">
+                <i class="fas fa-bullseye"></i> Goal: <strong>{{ goal.goal_name }}</strong>
+            </p>
+        </div>
+
+        <form method="POST" action="{{ url_for('log_entry', goal_id=goal.id) }}" class="log-form" id="logForm">
+            <div class="form-group">
+                <label for="date">
+                    <i class="fas fa-calendar"></i> Date *
+                </label>
+                <input 
+                    type="date" 
+                    id="date" 
+                    name="date" 
+                    class="form-control" 
+                    required
+                    value="{{ today }}"
+                    max="{{ today }}"
+                >
+                <small class="form-hint">When did you study? (You can select any past date)</small>
+            </div>
+
+            <div class="form-group">
+                <label for="hours_spent">
+                    <i class="fas fa-clock"></i> Hours Spent *
+                </label>
+                <div class="hours-input">
+                    <input 
+                        type="number" 
+                        id="hours_spent" 
+                        name="hours_spent" 
+                        class="form-control" 
+                        min="0.1"
+                        max="24"
+                        step="0.1"
+                        placeholder="e.g., 2.5"
+                        value="1"
+                        required
+                    >
+                    <span class="hours-label">hours</span>
+                </div>
+                <small class="form-hint">How long did you study? (0.1 to 24 hours, 0.5 = 30 minutes)</small>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">
+                    <i class="fas fa-sticky-note"></i> Notes & Reflections
+                </label>
+                <textarea 
+                    id="notes" 
+                    name="notes" 
+                    class="form-control" 
+                    rows="8"
+                    placeholder="What did you learn today? Any challenges or breakthroughs? Key takeaways?"
+                ></textarea>
+                <small class="form-hint">Record your thoughts, challenges, and achievements</small>
+            </div>
+
+            <div class="form-tips">
+                <h3><i class="fas fa-lightbulb"></i> Reflection Tips</h3>
+                <ul>
+                    <li><strong>What did you learn?</strong> Summarize key concepts or skills</li>
+                    <li><strong>What worked well?</strong> Note effective study methods</li>
+                    <li><strong>Any challenges?</strong> Identify areas that need more practice</li>
+                    <li><strong>Next steps?</strong> Plan what to focus on next time</li>
+                </ul>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <i class="fas fa-save"></i> Save Log Entry
+                </button>
+                <a href="{{ url_for('view_logs', goal_id=goal.id) }}" class="btn btn-outline">
+                    <i class="fas fa-times"></i> Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-sidebar">
+        <div class="sidebar-card">
+            <i class="fas fa-chart-pie sidebar-icon"></i>
+            <h3>Quick Stats</h3>
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Goal Target:</span>
+                    <span class="stat-value">{{ goal.target_date or 'Not set' }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Status:</span>
+                    <span class="stat-value success">Active</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-card">
+            <i class="fas fa-trophy sidebar-icon"></i>
+            <h3>Why Log Daily?</h3>
+            <ul class="benefits-list">
+                <li><i class="fas fa-check"></i> Track your consistency</li>
+                <li><i class="fas fa-check"></i> Remember what you learned</li>
+                <li><i class="fas fa-check"></i> Spot patterns in your progress</li>
+                <li><i class="fas fa-check"></i> Stay motivated to continue</li>
+            </ul>
+        </div>
+
+        <div class="sidebar-card">
+            <i class="fas fa-quote-left sidebar-icon"></i>
+            <blockquote class="mini-quote">
+                "We are what we repeatedly do. Excellence, then, is not an act, but a habit."
+                <footer>— Aristotle</footer>
+            </blockquote>
+        </div>
+    </div>
+</div>
+
+<script>
+// Date is already set by Flask template with value="{{ today }}"
+// User can now select any past date up to today
+
+// Remove the default hours setting since we set it in HTML with value="1"
+
+// Add character counter for notes
+const notesField = document.getElementById('notes');
+const charCounter = document.createElement('small');
+charCounter.className = 'char-counter';
+notesField.parentElement.appendChild(charCounter);
+
+notesField.addEventListener('input', function() {
+    const length = this.value.length;
+    charCounter.textContent = `${length} characters`;
+});
+</script>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - SkillTracker{% endblock %}
+
+{% block content %}
+<div class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Track Your Skills,<br>
+                    <span class="gradient-text">Grow Every Day</span>
+                </h1>
+                <p class="hero-description">
+                    Your personal learning journal to set goals, log progress, 
+                    and visualize your growth journey. Stay motivated and achieve more.
+                </p>
+                <div class="hero-buttons">
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i> Get Started Free
+                    </a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline btn-large">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">
+                    <i class="fas fa-chart-line"></i>
+                    <p>Track Progress</p>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-bullseye"></i>
+                    <p>Set Goals</p>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-trophy"></i>
+                    <p>Achieve More</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Everything You Need to Succeed</h2>
+            <p class="section-subtitle">Powerful tools to help you stay on track</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-target"></i>
+                    </div>
+                    <h3>Goal Management</h3>
+                    <p>Set clear learning goals with target dates and track them effortlessly.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Daily Logging</h3>
+                    <p>Record your study hours and reflections to build consistent habits.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Visual Analytics</h3>
+                    <p>See your progress with beautiful charts and insightful statistics.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Daily Inspiration</h3>
+                    <p>Get motivated with fresh quotes delivered to your dashboard daily.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Fully Responsive</h3>
+                    <p>Access your journal anywhere, on any device, anytime you need it.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Your data is protected with industry-standard security measures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Start tracking in three simple steps</p>
+            
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Create Your Goals</h3>
+                    <p>Define what skills you want to learn and set realistic target dates.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Log Your Progress</h3>
+                    <p>Record daily study sessions with hours spent and key takeaways.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Watch Yourself Grow</h3>
+                    <p>View detailed analytics and celebrate your learning achievements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Start Your Learning Journey?</h2>
+            <p>Join thousands of learners tracking their progress and achieving their goals.</p>
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-large">
+                <i class="fas fa-user-plus"></i> Create Free Account
+            </a>
+        </div>
+    </section>
+</div>
+{% endblock %}

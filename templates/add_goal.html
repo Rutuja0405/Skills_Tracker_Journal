@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Goal - SkillTracker{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <div class="form-container">
+        <div class="form-header">
+            <a href="{{ url_for('dashboard') }}" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+            <h1><i class="fas fa-bullseye"></i> Create New Learning Goal</h1>
+            <p>Set a clear goal to track your progress and stay motivated</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('add_goal') }}" class="goal-form">
+            <div class="form-group">
+                <label for="goal_name">
+                    <i class="fas fa-flag"></i> Goal Name *
+                </label>
+                <input 
+                    type="text" 
+                    id="goal_name" 
+                    name="goal_name" 
+                    class="form-control" 
+                    placeholder="e.g., Learn Python Programming, Master React.js, Study Data Science"
+                    required
+                    maxlength="100"
+                >
+                <small class="form-hint">Be specific about what you want to learn</small>
+            </div>
+
+            <div class="form-group">
+                <label for="target_date">
+                    <i class="fas fa-calendar-alt"></i> Target Date (Optional)
+                </label>
+                <input 
+                    type="date" 
+                    id="target_date" 
+                    name="target_date" 
+                    class="form-control"
+                    min="{{ today }}"
+                >
+                <small class="form-hint">Set a deadline to stay accountable</small>
+            </div>
+
+            <div class="form-tips">
+                <h3><i class="fas fa-lightbulb"></i> Tips for Great Goals</h3>
+                <ul>
+                    <li><strong>Be Specific:</strong> "Learn JavaScript basics" is better than "Learn coding"</li>
+                    <li><strong>Set Realistic Deadlines:</strong> Give yourself enough time to learn properly</li>
+                    <li><strong>Break it Down:</strong> Large goals can be split into smaller milestones</li>
+                    <li><strong>Stay Consistent:</strong> Regular practice is key to achieving your goals</li>
+                </ul>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus-circle"></i> Create Goal
+                </button>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline">
+                    <i class="fas fa-times"></i> Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-sidebar">
+        <div class="sidebar-card">
+            <i class="fas fa-rocket sidebar-icon"></i>
+            <h3>Why Set Goals?</h3>
+            <p>Setting clear learning goals helps you:</p>
+            <ul class="benefits-list">
+                <li><i class="fas fa-check"></i> Stay focused and motivated</li>
+                <li><i class="fas fa-check"></i> Track your progress effectively</li>
+                <li><i class="fas fa-check"></i> Build consistent learning habits</li>
+                <li><i class="fas fa-check"></i> Celebrate your achievements</li>
+            </ul>
+        </div>
+
+        <div class="sidebar-card">
+            <i class="fas fa-chart-line sidebar-icon"></i>
+            <h3>Track Your Journey</h3>
+            <p>Once you create a goal, you can:</p>
+            <ul class="benefits-list">
+                <li><i class="fas fa-check"></i> Log daily study sessions</li>
+                <li><i class="fas fa-check"></i> Add notes and reflections</li>
+                <li><i class="fas fa-check"></i> View progress charts</li>
+                <li><i class="fas fa-check"></i> See your total hours</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+// Set today's date as minimum
+document.getElementById('target_date').min = new Date().toISOString().split('T')[0];
+
+// Set default target date to 3 months from now
+const threeMonthsLater = new Date();
+threeMonthsLater.setMonth(threeMonthsLater.getMonth() + 3);
+document.getElementById('target_date').value = threeMonthsLater.toISOString().split('T')[0];
+</script>
+{% endblock %}
